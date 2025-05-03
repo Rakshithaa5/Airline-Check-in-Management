@@ -26,6 +26,11 @@ def home():
 def checkin():
     # Get passenger data from form
     booking_ref = request.form['booking_ref']
+
+    # Check if the booking reference already exists
+    if booking_ref in passenger_hash:
+        return jsonify({'status': 'failed', 'message': 'Duplicate booking reference.'})
+
     passenger_data = {
         'name': request.form['name'],
         'flight': request.form['flight'],
@@ -82,7 +87,6 @@ def get_passenger(booking_ref):
         return jsonify({'status': 'failed', 'message': 'Passenger not found'})
 
     return jsonify({'status': 'success', 'passenger': passenger_data})
-
 
 @app.route('/get_seat_map/<flight_number>')
 def get_seat_map(flight_number):
