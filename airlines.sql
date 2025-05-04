@@ -38,12 +38,7 @@ CREATE TABLE boarding_groups (
     description VARCHAR(100)
 );
 
--- Simply add the new column
-ALTER TABLE passengers 
-ADD COLUMN seat_number VARCHAR(10) AFTER seat_pref;
--- If you see the column is named slightly differently (like seat_number already)
-ALTER TABLE passengers 
-CHANGE COLUMN seat_number seat_number VARCHAR(10);
+
 
 -- Or if it's named 'seat' or similar
 ALTER TABLE passengers 
